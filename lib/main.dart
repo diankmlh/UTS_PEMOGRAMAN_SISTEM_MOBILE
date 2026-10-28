@@ -1,48 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'pages/flower_list_page.dart';
+import 'pages/menu_list_page.dart';
 
 void main() {
-  runApp(const BloomPetalApp());
+  runApp(const KantinKitaApp());
 }
 
-class BloomPetalApp extends StatelessWidget {
-  const BloomPetalApp({super.key});
+class KantinKitaApp extends StatelessWidget {
+  const KantinKitaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Bloom & Petal',
+      title: 'Kantin Kita',
       theme: ThemeData(
         useMaterial3: true,
-
-        // Warna cream digunakan sebagai latar agar tampilan terasa hangat dan nyaman dilihat.
-        scaffoldBackgroundColor: const Color(0xFFFFFCF8),
-
+        // Pink muda memberikan kesan manis dan lembut.
+        scaffoldBackgroundColor: const Color(0xFFFFF5F7),
         colorScheme: ColorScheme.fromSeed(
-          // Sage green dipilih sebagai warna utama untuk memberikan kesan natural, segar, dan elegan.
-          seedColor: const Color(0xFF789477),
-          primary: const Color(0xFF789477),
-
-          // Dusty pink digunakan sebagai warna aksen untuk memberikan sentuhan lembut dan feminin yang sesuai dengan toko bunga.
-          secondary: const Color(0xFFD98C9A),
-
-          surface: const Color(0xFFFFFCF8),
+          seedColor: const Color(0xFFE88DAA),
+          primary: const Color(0xFFE88DAA),
+          secondary: const Color(0xFFCA6689),
+          surface: const Color(0xFFFFFBFC),
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF789477),
+          backgroundColor: Color(0xFFE88DAA),
           foregroundColor: Colors.white,
           centerTitle: true,
         ),
         inputDecorationTheme: const InputDecorationTheme(
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFF789477), width: 2),
+            borderSide: BorderSide(color: Color(0xFFE88DAA), width: 2),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFE88DAA),
+            foregroundColor: Colors.white,
           ),
         ),
       ),
-      home: const FlowerListPage(),
+      home: const MenuListPage(),
     );
   }
 }

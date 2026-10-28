@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widgets/flower_text.dart';
+import '../widgets/kantin_text.dart';
 
-class AddFlowerPage extends StatefulWidget {
-  const AddFlowerPage({super.key});
+class AddMenuPage extends StatefulWidget {
+  const AddMenuPage({super.key});
 
   @override
-  State<AddFlowerPage> createState() => _AddFlowerPageState();
+  State<AddMenuPage> createState() => _AddMenuPageState();
 }
 
-class _AddFlowerPageState extends State<AddFlowerPage> {
+class _AddMenuPageState extends State<AddMenuPage> {
   final _formKey = GlobalKey<FormState>();
   final _namaController = TextEditingController();
   final _hargaController = TextEditingController();
@@ -26,15 +26,15 @@ class _AddFlowerPageState extends State<AddFlowerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const FlowerText(
-          text: 'Add Your Flowers',
+        title: const KantinText(
+          text: 'Tambah Menu',
           fontSize: 22,
           fontWeight: FontWeight.bold,
           color: Colors.white,
           isHeading: true,
         ),
-        backgroundColor: const Color(0xFF789477),
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: const Color(0xFFE88DAA),
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -45,14 +45,13 @@ class _AddFlowerPageState extends State<AddFlowerPage> {
               TextFormField(
                 controller: _namaController,
                 decoration: const InputDecoration(
-                  labelText: 'Flower Bouquet Name',
-                  hintText: 'Example: Pink Rose Bouquet',
-                  prefixIcon: Icon(Icons.local_florist),
+                  labelText: 'Nama Makanan atau Minuman',
+                  hintText: 'Contoh: Donat Strawberry',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Flower name is required';
+                    return 'Nama menu wajib diisi';
                   }
                   return null;
                 },
@@ -62,25 +61,24 @@ class _AddFlowerPageState extends State<AddFlowerPage> {
                 controller: _hargaController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  labelText: 'Flower Price',
-                  hintText: 'Example: 85000',
-                  prefixIcon: Icon(Icons.payments_outlined),
+                  labelText: 'Harga Menu',
+                  hintText: 'Contoh: 15000',
                   prefixText: 'Rp ',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Flower price is required';
+                    return 'Harga menu wajib diisi';
                   }
 
                   if (!RegExp(r'^[0-9]+$').hasMatch(value.trim())) {
-                    return 'Price must contain numbers only';
+                    return 'Harga harus berupa angka saja';
                   }
 
                   final harga = int.tryParse(value.trim());
 
                   if (harga == null || harga <= 0) {
-                    return 'Price must be greater than zero';
+                    return 'Harga harus lebih dari nol';
                   }
 
                   return null;
@@ -90,24 +88,24 @@ class _AddFlowerPageState extends State<AddFlowerPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    final bunga = <String, dynamic>{
+                    final menu = <String, dynamic>{
                       'nama': _namaController.text.trim(),
                       'harga': int.parse(_hargaController.text.trim()),
                     };
 
-                    Get.back(result: bunga);
+                    Get.back(result: menu);
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF789477),
+                  backgroundColor: const Color(0xFFE88DAA),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
                     vertical: 15,
                   ),
                 ),
-                child: const FlowerText(
-                  text: 'Save Flower',
+                child: const KantinText(
+                  text: 'Simpan Menu',
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
